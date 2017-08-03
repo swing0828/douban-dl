@@ -2,9 +2,8 @@
 # -*- coding:utf-8 -*-
 import os
 
-import requests
-
 from douban.celebrity import Celebrity
+from utils import file_utils
 
 
 def get_celebrity(celebrity, path):
@@ -22,9 +21,7 @@ def get_celebrity(celebrity, path):
             "Referer": refer,
             "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.104 Safari/537.36"
         }
-        r = requests.get(photo_url, headers=headers, stream=True)
-        with open(name, "wb") as f:
-            f.write(r.content)
+        file_utils.save_from_url(photo_url, headers, name)
         idx += 1
     print("saving celebrity photo to {}".format(path))
 

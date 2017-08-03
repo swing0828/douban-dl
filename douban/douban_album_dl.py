@@ -2,8 +2,6 @@
 
 import os
 
-import requests
-
 from utils import file_utils
 
 headers = {
@@ -22,8 +20,6 @@ def get_album(album, path):
     for photo_url in album.photos():
         name = os.path.basename(photo_url)
         print("{}: saving {}".format(idx, name))
-        r = requests.get(photo_url, headers=headers, stream=True)
-        with open(name, "wb") as f:
-            f.write(r.content)
+        file_utils.save_from_url(photo_url, headers, name)
         idx += 1
     print("saving album to {}, total {} images".format(path, idx))

@@ -32,19 +32,19 @@ def parse_url(url, path):
     :param url:
     :return:
     """
-    match = re.match(r'https://www.douban.com/photos/album/(\d+)', url)
+    match = re.match(r'(http|https)://www.douban.com/photos/album/(\d+)', url)
     if match:
-        album_id = match.group(1)
+        album_id = match.group(2)
         album = Album(album_id)
         get_album(album, path)
         return
-    match = re.match(r'https://movie.douban.com/celebrity/(\d+)', url)
+    match = re.match(r'(http|https)://movie.douban.com/celebrity/(\d+)', url)
     if match:
-        celebrity_id = match.group(1)
+        celebrity_id = match.group(2)
         celebrity = Celebrity(celebrity_id)
         get_celebrity(celebrity, path)
         return
-    print "Not support this url yet"
+    print("Not support this url yet")
 
 
 def main():
