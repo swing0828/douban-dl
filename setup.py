@@ -8,7 +8,7 @@ requirements = [
 ]
 
 setup(
-    name="douban_dl",
+    name="douban-dl",
     version="0.0.1",
     description="douban downloader, include album, celebrity",
     long_description="douban album downloader",
@@ -20,7 +20,7 @@ setup(
     # not use scripts while use entry_points instead https://packaging.python.org/tutorials/distributing-packages/#scripts
     entry_points={
         'console_scripts': [
-            'douban_dl = douban.__main__:main',
+            'douban-dl = douban.__main__:main',
         ]},
     keywords="douban downloader",
     packages=find_packages(exclude=["tests"]),

@@ -18,8 +18,8 @@ def get_args():
                                      description="""
                                          A tiny tool to download douban resources
                                         """)
-    parser.add_argument("url", help="start url of album or any other pages")
-    parser.add_argument('path', default='./douban', nargs='?', help='the path to store all resources')  # 可选
+    parser.add_argument("url", help="start url of album or celebrity page")
+    parser.add_argument('path', default='./douban', nargs='?', help='the path to store all resources defaul is ./douban')  # 可选
     # parser.add_argument('-a', '--album', help='album id', action='store')
     # parser.add_argument('-c', '--celebrity', help='celebrity id', action='store')
     return parser.parse_args()
