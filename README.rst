@@ -1,7 +1,7 @@
-douban album downloader
+douban downloader
 =======================
 
-A simple python script to download douban albums.
+A simple python script to download douban albums and celebrity
 
 
 installation
@@ -9,7 +9,7 @@ installation
 
 ::
 
-    $ pip install douban-album-dl
+    $ pip install douban-dl
 
 
 usage
@@ -17,12 +17,14 @@ usage
 
 ::
 
-    $ douban-album-dl album_id [location]
+    $ douban-dl url [path]
 
-``album_id`` is the last number of the douban album url.
-i.e. "https://www.douban.com/photos/album/**<ALBUM_ID>**"
+``url`` should be like this:
 
-``location`` is the folder where images saved, defaults to ``./album``.
+    https://www.douban.com/photos/album/<album_id>
+    https://movie.douban.com/celebrity/<celebrity_id>
+
+``path`` is the folder where images saved, defaults to ``./douban``.
 
 license
 -------

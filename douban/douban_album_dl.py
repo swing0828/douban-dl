@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
-from douban.album import Album
-import requests
-import sys
 import os
+
+import requests
+
+from utils import file_utils
 
 headers = {
     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
@@ -14,20 +15,9 @@ headers = {
 }
 
 
-def mayday():
-    h = """douban-album-dl album_id [location=./album]"""
-
-    print(h)
-
-
-def mkdir(path):
-    if not os.path.exists(path):
-        os.makedirs(path)
-
-
 def get_album(album, path):
     idx = 0
-    mkdir(path)
+    file_utils.mkdir(path)
     os.chdir(path)
     for photo_url in album.photos():
         name = os.path.basename(photo_url)
@@ -37,12 +27,3 @@ def get_album(album, path):
             f.write(r.content)
         idx += 1
     print("saving album to {}, total {} images".format(path, idx))
-
-
-if __name__ == "__main__":
-    if len(sys.argv) == 1:
-        mayday()
-    else:
-        album = Album(sys.argv[1])
-        path = "./album" if len(sys.argv) == 2 else sys.argv[2]
-        get_album(album, path)

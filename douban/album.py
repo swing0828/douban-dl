@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 
+
 class Album:
     BASE_URL = "https://www.douban.com/photos/album/"
 
