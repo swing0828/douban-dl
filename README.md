@@ -19,6 +19,7 @@ Usage
 
     https://www.douban.com/photos/album/<album_id>
     https://movie.douban.com/celebrity/<celebrity_id>
+    https://www.douban.com/people/<douban_id>/photos
 
 `path` is the folder where images saved, defaults to `./douban`.
 

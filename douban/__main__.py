@@ -7,6 +7,7 @@ from douban.album import Album
 from douban.celebrity import Celebrity
 from douban.douban_album_dl import get_album
 from douban.douban_celebrity_dl import get_celebrity
+from douban.people import People
 
 
 def get_args():
@@ -29,20 +30,29 @@ def parse_url(url, path):
     """
     https://www.douban.com/photos/album/<album_id>
     https://movie.douban.com/celebrity/<celebrity_id>
+    https://www.douban.com/people/<douban_id>/photos
     :param url:
     :return:
     """
-    match = re.match(r'(http|https)://www.douban.com/photos/album/(\d+)', url)
+    match = re.match(r'https?://www.douban.com/photos/album/(\d+)', url)
     if match:
-        album_id = match.group(2)
+        album_id = match.group(1)
         album = Album(album_id)
         get_album(album, path)
         return
-    match = re.match(r'(http|https)://movie.douban.com/celebrity/(\d+)', url)
+    match = re.match(r'https?://movie.douban.com/celebrity/(\d+)', url)
     if match:
-        celebrity_id = match.group(2)
+        celebrity_id = match.group(1)
         celebrity = Celebrity(celebrity_id)
         get_celebrity(celebrity, path)
+        return
+    match = re.match(r'https?://www.douban.com/people/(\w+)(/|/photos)', url)
+    if match:
+        people_id = match.group(1)
+        people = People(people_id)
+        for album_id in people.albums():
+            a = Album(album_id)
+            get_album(a, path + '/' + album_id)
         return
     print("Not support this url yet")
 

@@ -15,6 +15,7 @@ headers = {
 
 def get_album(album, path):
     idx = 0
+    pwd = os.getcwd()
     file_utils.mkdir(path)
     os.chdir(path)
     for photo_url in album.photos():
@@ -23,3 +24,4 @@ def get_album(album, path):
         file_utils.save_from_url(photo_url, headers, name)
         idx += 1
     print("saving album to {}, total {} images".format(path, idx))
+    os.chdir(pwd)
