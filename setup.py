@@ -7,11 +7,17 @@ requirements = [
     "requests"
 ]
 
+
+def long_desc():
+    with open('README.md') as f:
+        return f.read()
+
+
 setup(
     name="douban-dl",
     version="0.0.1",
     description="douban downloader, include album, celebrity",
-    long_description="douban album downloader",
+    long_description=long_desc(),
     url="https://github.com/einverne/douban-dl",
     author="einverne",
     author_email="einverne@gmail.com",
