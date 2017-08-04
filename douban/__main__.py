@@ -6,6 +6,7 @@ import re
 
 from douban.douban_album_dl import get_album_by_id
 from douban.douban_celebrity_dl import get_celebrity_by_id
+from douban.movie import get_movie_by_id
 from douban.people import People
 
 
@@ -50,6 +51,11 @@ def parse_url(url, path):
         people = People(people_id)
         for album_id in people.albums():
             get_album_by_id(album_id, os.path.join(path, album_id))
+        return
+    match = re.match(r'https?://movie.douban.com/subject/(\d+)', url)
+    if match:
+        movie_id = match.group(1)
+        get_movie_by_id(movie_id, path)
         return
     print("Not support this url yet")
 
