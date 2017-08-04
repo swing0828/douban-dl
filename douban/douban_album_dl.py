@@ -2,6 +2,7 @@
 
 import os
 
+from douban.album import Album
 from utils import file_utils
 
 headers = {
@@ -15,13 +16,16 @@ headers = {
 
 def get_album(album, path):
     idx = 0
-    pwd = os.getcwd()
     file_utils.mkdir(path)
-    os.chdir(path)
     for photo_url in album.photos():
         name = os.path.basename(photo_url)
         print("{}: saving {}".format(idx, name))
-        file_utils.save_from_url(photo_url, headers, name)
+        file_utils.save_from_url(photo_url, headers, path + '/' + name)
         idx += 1
     print("saving album to {}, total {} images".format(path, idx))
-    os.chdir(pwd)
+
+
+def get_album_by_id(album_id, path):
+    print("saving album {} to {}".format(album_id, path))
+    album = Album(album_id)
+    get_album(album, path)

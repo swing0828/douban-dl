@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import argparse
+import os
 import re
 
-from douban.album import Album
-from douban.celebrity import Celebrity
-from douban.douban_album_dl import get_album
-from douban.douban_celebrity_dl import get_celebrity
+from douban.douban_album_dl import get_album_by_id
+from douban.douban_celebrity_dl import get_celebrity_by_id
 from douban.people import People
 
 
@@ -32,27 +31,25 @@ def parse_url(url, path):
     https://movie.douban.com/celebrity/<celebrity_id>
     https://www.douban.com/people/<douban_id>/photos
     :param url:
+    :param path: 下载路径
     :return:
     """
     match = re.match(r'https?://www.douban.com/photos/album/(\d+)', url)
     if match:
         album_id = match.group(1)
-        album = Album(album_id)
-        get_album(album, path)
+        get_album_by_id(album_id, path)
         return
     match = re.match(r'https?://movie.douban.com/celebrity/(\d+)', url)
     if match:
         celebrity_id = match.group(1)
-        celebrity = Celebrity(celebrity_id)
-        get_celebrity(celebrity, path)
+        get_celebrity_by_id(celebrity_id, path)
         return
     match = re.match(r'https?://www.douban.com/people/(\w+)(/|/photos)', url)
     if match:
         people_id = match.group(1)
         people = People(people_id)
         for album_id in people.albums():
-            a = Album(album_id)
-            get_album(a, path + '/' + album_id)
+            get_album_by_id(album_id, os.path.join(path, album_id))
         return
     print("Not support this url yet")
 

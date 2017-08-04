@@ -8,9 +8,7 @@ from utils import file_utils
 
 def get_celebrity(celebrity, path):
     idx = 0
-    if not os.path.exists(path):
-        os.mkdir(path)
-    os.chdir(path)
+    file_utils.mkdir(path)
     for refer, photo_url in celebrity.photos():
         name = os.path.basename(photo_url)
         if os.path.exists(name):
@@ -21,9 +19,14 @@ def get_celebrity(celebrity, path):
             "Referer": refer,
             "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.104 Safari/537.36"
         }
-        file_utils.save_from_url(photo_url, headers, name)
+        file_utils.save_from_url(photo_url, headers, path + '/' + name)
         idx += 1
     print("saving celebrity photo to {}".format(path))
+
+
+def get_celebrity_by_id(cid, path):
+    c = Celebrity(cid)
+    get_celebrity(c, path)
 
 
 if __name__ == "__main__":
