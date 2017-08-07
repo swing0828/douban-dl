@@ -15,7 +15,7 @@ def long_desc():
 
 setup(
     name="douban-dl",
-    version="0.0.1",
+    version="0.0.2",
     description="douban downloader, include album, celebrity",
     long_description=long_desc(),
     url="https://github.com/einverne/douban-dl",

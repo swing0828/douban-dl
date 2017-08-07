@@ -11,16 +11,16 @@ Introduction
 
 1. 豆瓣相册，比如
 
-    douban-dl https://www.douban.com/photos/album/1641641224/
+        douban-dl https://www.douban.com/photos/album/1641641224/
 
 2. 影人相册图片
 
-    douban-dl https://movie.douban.com/celebrity/1335340/
-    douban-dl https://movie.douban.com/celebrity/1335340/photos
+        douban-dl https://movie.douban.com/celebrity/1335340/
+        douban-dl https://movie.douban.com/celebrity/1335340/photos
     
 3. 用户所有相册
 
-    douban-dl https://www.douban.com/people/einverne/
+        douban-dl https://www.douban.com/people/einverne/
     
 
 Installation
