@@ -9,13 +9,15 @@ requirements = [
 
 
 def long_desc():
-    with open('README.md') as f:
-        return f.read()
-
+    try:
+        with open('README.md') as f:
+            return f.read()
+    except IOError:
+        return ''
 
 setup(
     name="douban-dl",
-    version="0.0.2",
+    version="0.0.3",
     description="douban downloader, include album, celebrity",
     long_description=long_desc(),
     url="https://github.com/einverne/douban-dl",
