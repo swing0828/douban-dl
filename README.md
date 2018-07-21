@@ -1,6 +1,8 @@
 douban downloader
 =======================
 
+一个简单的下载豆瓣相册、图集、影人图片的小脚本
+
 A simple python script to download douban albums and celebrity
 
 
@@ -23,6 +25,10 @@ Introduction
         douban-dl https://www.douban.com/people/einverne/
     
 
+4. 电影剧照
+
+        douban-dl https://movie.douban.com/subject/26804147
+
 Installation
 ------------
 
@@ -41,6 +47,8 @@ Usage
     https://www.douban.com/people/<douban_id>/photos
 
 `path` is the folder where images saved, defaults to `./douban`.
+
+如果没有指定 `path` ，默认会保存到当前目录下 douban 文件夹中。
 
 License
 -------
