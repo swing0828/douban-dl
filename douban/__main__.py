@@ -4,8 +4,8 @@ import argparse
 import os
 import re
 
-from douban.douban_album_dl import get_album_by_id
-from douban.douban_celebrity_dl import get_celebrity_by_id
+from douban.album import get_album_by_id
+from douban.celebrity import get_celebrity_by_id
 from douban.movie import get_movie_by_id
 from douban.people import People
 
