@@ -8,6 +8,7 @@ from douban.album import get_album_by_id
 from douban.celebrity import get_celebrity_by_id
 from douban.movie import get_movie_by_id
 from douban.people import People
+from douban.weheartit import get_collection_photos
 
 
 def get_args():
@@ -35,28 +36,33 @@ def parse_url(url, path):
     :param path: 下载路径
     :return:
     """
-    match = re.match(r'https?://www.douban.com/photos/album/(\d+)', url)
+    match = re.match(r'^https?://www.douban.com/photos/album/(\d+)$', url)
     if match:
         album_id = match.group(1)
         get_album_by_id(album_id, path)
         return
-    match = re.match(r'https?://movie.douban.com/celebrity/(\d+)', url)
+    match = re.match(r'^https?://movie.douban.com/celebrity/(\d+)$', url)
     if match:
         celebrity_id = match.group(1)
         get_celebrity_by_id(celebrity_id, path)
         return
-    match = re.match(r'https?://www.douban.com/people/(\w+)(/|/photos)', url)
+    match = re.match(r'^https?://www.douban.com/people/(\w+)(/|/photos)$', url)
     if match:
         people_id = match.group(1)
         people = People(people_id)
         for album_id in people.albums():
             get_album_by_id(album_id, os.path.join(path, album_id))
         return
-    match = re.match(r'https?://movie.douban.com/subject/(\d+)', url)
+    match = re.match(r'^https?://movie.douban.com/subject/(\d+)$', url)
     if match:
         movie_id = match.group(1)
         get_movie_by_id(movie_id, path)
         return
+    match = re.match(r'^https?://weheartit.com/([a-zA-Z0-9\_\-]+)/collections/([0-9a-zA-z\-]+)$', url)
+    if match:
+        username = match.group(1)
+        collection_id = match.group(2)
+        get_collection_photos(username, collection_id, path)
     print("Not support this url yet")
 
 

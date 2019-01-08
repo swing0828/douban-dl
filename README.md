@@ -28,6 +28,10 @@ Introduction
 4. 电影剧照
 
         douban-dl https://movie.douban.com/subject/26804147
+        
+5. We Heart It 
+
+        douban-dl https://weheartit.com/ma_yu_scandal/collections/106301429-
 
 Installation
 ------------
@@ -49,6 +53,12 @@ Usage
 `path` is the folder where images saved, defaults to `./douban`.
 
 如果没有指定 `path` ，默认会保存到当前目录下 douban 文件夹中。
+
+更新日志
+-------
+
+2019-01-08 增加 We Heart It 支持
+
 
 License
 -------
