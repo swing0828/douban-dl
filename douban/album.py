@@ -14,21 +14,21 @@ class Album:
     BASE_URL = "https://www.douban.com/photos/album/"
 
     def __init__(self, album_id):
-        self.url = Album.BASE_URL + album_id + "/?start="
+        self.url = Album.BASE_URL + album_id + "/?m_start="
 
     def photos(self):
-        start = 0
+        m_start = 0
         while True:
-            next_photos = self.__photos(start)
+            next_photos = self.__photos(m_start)
             step = len(next_photos)
             if 0 == step:
                 break
             for photo in next_photos:
                 yield get_album_raw(photo.img["src"])
-            start += step
+            m_start += step
 
-    def __photos(self, start):
-        url = self.url + str(start)
+    def __photos(self, m_start):
+        url = self.url + str(m_start)
         r = requests.get(url)
         soup = BeautifulSoup(r.text, "html.parser")
         return soup.find_all("div", class_="photo_wrap")
